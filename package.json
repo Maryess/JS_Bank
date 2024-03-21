@@ -1,0 +1,39 @@
+{
+	"name": "js-red-band",
+	"version": "1.0.0",
+	"description": "project red bank",
+	"main": "webpack.config.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "webpack serve --mode development --open",
+		"build": "webpack --mode production"
+	},
+	"author": "Mary",
+	"license": "ISC",
+	"devDependencies": {
+		"@babel/core": "^7.24.0",
+		"@babel/preset-env": "^7.24.0",
+		"@trivago/prettier-plugin-sort-imports": "^4.3.0",
+		"babel-eslint": "^10.1.0",
+		"babel-loader": "^9.1.3",
+		"clean-webpack-plugin": "^4.0.0",
+		"css-loader": "^6.10.0",
+		"css-minimizer-webpack-plugin": "^6.0.0",
+		"dotenv": "^16.4.5",
+		"file-loader": "^6.2.0",
+		"html-loader": "^5.0.0",
+		"html-webpack-plugin": "^5.6.0",
+		"mini-css-extract-plugin": "^2.8.1",
+		"prettier": "^3.2.5",
+		"sass": "^1.71.1",
+		"sass-loader": "^14.1.1",
+		"style-loader": "^3.3.4",
+		"terser-webpack-plugin": "^5.3.10",
+		"webpack": "^5.90.3",
+		"webpack-cli": "^5.1.4",
+		"webpack-dev-server": "^5.0.2"
+	},
+	"dependencies": {
+		"tailwind": "^4.0.0"
+	}
+}
