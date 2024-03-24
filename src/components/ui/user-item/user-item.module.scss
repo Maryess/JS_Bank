@@ -1,0 +1,17 @@
+@import 'src/styles/mixins';
+@import 'src/styles/variables';
+
+.user-icon {
+	@include flex-horizontal-center;
+	justify-content: space-between;
+	background-color: $bg-block;
+	margin: 20px 20px;
+	border-radius: $radius;
+	width: 250px;
+
+	.icon {
+		width: 30px;
+		background-color: #fff;
+		border-radius: 50%;
+	}
+}

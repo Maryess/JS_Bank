@@ -68,6 +68,43 @@ class RQuery {
 	}
 
 	/**
+	 * @param {string | string[]} classNames
+	 */
+
+	addClass(classNames) {
+		if (Array.isArray(classNames)) {
+			for (const className of classNames) {
+				this.element.classList.add(className)
+			}
+		} else {
+			this.element.classList.add(classNames)
+		}
+		return this
+	}
+
+	removeClass(classNames) {
+		if (Array.isArray(classNames)) {
+			for (const className of classNames) {
+				this.element.classList.remove(className)
+			}
+		} else {
+			this.element.classList.remove(classNames)
+		}
+		return this
+	}
+
+	/**
+	 * @param {function(Event)} callback
+		
+	 }}
+	 */
+
+	click(callback) {
+		this.element.addEventListener('click', callback)
+		return this
+	}
+
+	/**
 	 * @param {string} property
 	 * @param {string} value
 	 * @returns {RQuery}
