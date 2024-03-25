@@ -1,4 +1,5 @@
 import { Field } from '@/components/ui/field/field.component'
+import { Heading } from '@/components/ui/heading/heading.component'
 import { BaseScreen } from '@/core/component/base-screen.component.js'
 import { $R } from '@/core/rquery/rquery.lib'
 import renderService from '@/core/services/render.service.js'
@@ -18,8 +19,13 @@ export class Home extends BaseScreen {
 				// 	variant: 'purple',
 				// 	onClick: () => alert('Hey')
 				// }),
-				new Field({})
+				new Field({
+					placeholder: 'Enter mail',
+					name: 'text'
+				}),
+				new Heading('hello')
 			],
+
 			styles
 		)
 		$R(element).find('p').css('color', 'green')
