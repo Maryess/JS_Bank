@@ -14,7 +14,7 @@ export class UserItem extends ChildComponent {
 
 		this.user = user
 		this.isGray = isGray
-		this.inClick = onClick
+		this.onClick = onClick
 	}
 
 	#preventDefault(event) {

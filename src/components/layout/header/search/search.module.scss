@@ -1,0 +1,62 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.search {
+	@include flex-horizontal-center;
+	border-radius: $radius;
+	background-color: $bg-block;
+	padding: 12px 10px;
+	position: relative;
+
+	&:focus-within {
+		> svg {
+			color: $white;
+		}
+	}
+
+	> svg {
+		@include transition(color);
+		width: 20px;
+		height: 20px;
+		margin-right: 7px;
+		color: $text-gray;
+	}
+
+	> .results {
+		position: absolute;
+		width: 100%;
+		top: calc(100% + 0.7rem);
+		right: 0;
+		animation: showIn 0.4s;
+
+		> button {
+			width: 100%;
+			margin-bottom: 0.7rem;
+			box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+		}
+
+		.item {
+			opacity: 0;
+			transform: translateY(-20px);
+			transition: opacity 0.3s transform 0.3s;
+
+			&.visible {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+	}
+}
+
+@keyframes showIn {
+	from {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	70% {
+		opacity: 1;
+	}
+	to {
+		transform: translateY(0);
+	}
+}
