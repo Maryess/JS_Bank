@@ -14,7 +14,7 @@ export class Heading extends ChildComponent {
 	render() {
 		this.element = renderService.htmlToElement(template, [], styles)
 
-		$R(this.element).heading(this.title)
+		$R(this.element).text(this.title)
 
 		return this.element
 	}

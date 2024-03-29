@@ -90,7 +90,7 @@ class RQuery {
 	 * @param {string} [textContent] - Optional text content to set. If not provided, the current text content will be returned.
 	 * @returns {RQuery|string} The current RQuery instance for chaining when setting text content, or the current text content when getting.
 	 */
-	heading(textContent) {
+	text(textContent) {
 		if (typeof textContent === 'undefined') {
 			return this.element.textContent
 		} else {

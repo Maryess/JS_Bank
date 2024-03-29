@@ -1,5 +1,6 @@
 import { Field } from '@/components/ui/field/field.component'
 import { Heading } from '@/components/ui/heading/heading.component'
+import { UserItem } from '@/components/ui/user-item/user-item.component'
 import { BaseScreen } from '@/core/component/base-screen.component.js'
 import { $R } from '@/core/rquery/rquery.lib'
 import renderService from '@/core/services/render.service.js'
@@ -14,16 +15,16 @@ export class Home extends BaseScreen {
 		const element = renderService.htmlToElement(
 			template,
 			[
-				// new Button({
-				// 	children: 'Send',
-				// 	variant: 'purple',
-				// 	onClick: () => alert('Hey')
-				// }),
+				new UserItem({
+					name: 'Mary',
+					avatarPath:
+						'https://w.forfun.com/fetch/b7/b77ae3f6f1afd7a4ed41fa4be58015a6.jpeg'
+				}),
 				new Field({
 					placeholder: 'Enter mail',
 					name: 'text'
 				}),
-				new Heading('hello')
+				new Heading('Привет')
 			],
 
 			styles
