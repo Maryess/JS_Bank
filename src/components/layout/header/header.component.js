@@ -26,7 +26,7 @@ export class Header extends ChildComponent {
 				new UserItem(
 					{
 						name: 'Mary Marnopolskaya',
-						avatarPath: '/coins-money-svgrepo-com.svg'
+						avatarPath: '/main-page.jpg'
 					},
 					false
 				)
