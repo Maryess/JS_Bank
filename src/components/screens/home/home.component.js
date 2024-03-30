@@ -1,6 +1,5 @@
 import { BaseScreen } from '@/core/component/base-screen.component.js'
-import { $R } from '@/core/rquery/rquerylib'
-import renderService from '@/core/services/render.servise.js'
+import renderService from '@/core/services/render.service.js'
 import styles from './home.module.scss'
 import template from './home.template.html'
 
@@ -9,10 +8,13 @@ export class Home extends BaseScreen {
 		super({ title: 'Home' })
 	}
 	render() {
-		const element = renderService.htmlToElement(template, [], styles)
+		const element = renderService.htmlToElement(
+			template,
+			[],
 
-		$R(element).find('p').css('color', 'red')
+			styles
+		)
 
-		return element.outerHTML
+		return element
 	}
 }

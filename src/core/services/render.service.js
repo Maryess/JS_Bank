@@ -33,7 +33,6 @@ class RenderService {
 			const elementTagName = element.tagName.toLowerCase()
 			if (componentTagPattern.test(elementTagName)) {
 				const componentName = elementTagName
-					.toLowerCase()
 					.replace(componentTagPattern, '')
 					.replace(/-/g, '')
 
@@ -48,7 +47,7 @@ class RenderService {
 						foundComponent instanceof ChildComponent
 							? foundComponent.render()
 							: new foundComponent().render()
-					element.replaceWidth(componentContent)
+					element.replaceWith(componentContent)
 				} else {
 					console.log(`component ${componentName} is not defined`)
 				}
