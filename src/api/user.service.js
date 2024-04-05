@@ -1,15 +1,15 @@
-import { redQuery } from '@/core/red-query/red-query.lib'
+import { bankQuery } from '@/bank-query/bank-query.lib'
 
 export class UserService {
 	#BASE_URL = '/users'
 
 	getAll(searchTerm, onSuccess) {
-		return redQuery({
+		return bankQuery({
 			path: `${this.#BASE_URL}${
 				searchTerm
 					? `?${new URLSearchParams({
 							searchTerm
-					  })}`
+						})}`
 					: ''
 			}`,
 			onSuccess
