@@ -71,6 +71,15 @@ class RQuery {
 		}
 	}
 
+	show() {
+		this.element.style.removeProperty('display')
+		return this
+	}
+
+	hide() {
+		this.element.style.display = 'none'
+	}
+
 	/**
 	 * Get or set the inner HTML of the selected element.
 	 * @param {string} [htmlContent] - Optional HTML content to set. If not provided, the current inner HTML will be returned.
@@ -111,7 +120,25 @@ class RQuery {
 		return this
 	}
 
+	enter(callback) {
+		this.element.addEventListener('keydown', callback)
+		return this
+	}
+
 	/* FORM */
+
+	submit(onSubmit) {
+		if (this.element.tagName.toLowerCase() === 'form') {
+			this.element.addEventListener('submit', e => {
+				e.preventDefault()
+				onSubmit(e)
+			})
+		} else {
+			throw new Error('Element must be a form')
+		}
+
+		return this
+	}
 
 	/**
 	 * Set attributes and event listeners for an input element.

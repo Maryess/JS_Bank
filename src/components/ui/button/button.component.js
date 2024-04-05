@@ -8,7 +8,7 @@ import template from './button.template.html'
 export class Button extends ChildComponent {
 	constructor({ children, onClick, variant }) {
 		super()
-		if (!children) throw new Error('Children is empty!')
+		// if (!children) throw new Error('Children is empty!')
 
 		this.children = children
 		this.onClick = onClick

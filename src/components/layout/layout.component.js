@@ -19,7 +19,11 @@ export class Layout extends ChildComponent {
 		const mainElement = $R(this.element).find('main')
 
 		const contentContainer = $R(this.element).find('#content')
-		contentContainer.append(this.children)
+		// contentContainer.append(this.children)
+
+		// if (this.router.navigate('/auth')) {
+		// 	$R(this.element).find(contentContainer).hide()
+		// }
 
 		mainElement
 			.before(

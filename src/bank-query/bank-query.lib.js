@@ -10,22 +10,25 @@
  */
 
 import { SERVER_URL } from '@/config/url.config'
+import { ACCESS_TOKEN_KEY } from '@/constanst/auth.const'
+import { NotificationService } from '@/core/services/notification.service'
+import { StorageService } from '@/core/services/storage.service'
 import { extractErrorMessage } from './extract-error-message'
 
 export async function bankQuery({
 	path,
-	method = 'GET',
 	body = null,
 	headers = {},
-	onSuccess = null,
-	onError = null
+	method = 'GET',
+	onError = null,
+	onSuccess = null
 }) {
-	let isLoading = false
-	let error = null
-	let data = null
+	let isLoading = true,
+		error = null,
+		data = null
 	const url = `${SERVER_URL}/api${path}`
 
-	const accessToken = ''
+	const accessToken = new StorageService().getItem(ACCESS_TOKEN_KEY)
 
 	const requestOptions = {
 		method,
@@ -36,7 +39,7 @@ export async function bankQuery({
 	}
 
 	if (accessToken) {
-		requestOptions.headers.Authorization = `	Bearer ${accessToken}`
+		requestOptions.headers.Authorization = `Bearer ${accessToken}`
 	}
 
 	if (body) {
@@ -45,24 +48,29 @@ export async function bankQuery({
 
 	try {
 		const response = await fetch(url, requestOptions)
+
 		if (response.ok) {
-			data = response.json()
+			data = await response.json()
+
 			if (onSuccess) {
 				onSuccess(data)
-			} else {
-				const errorData = await response.json()
-				const errorMessage = extractErrorMessage(errorData)
-				if (errorMessage) {
-					onError(errorMessage)
-				}
 			}
+		} else {
+			const errorData = await response.json()
+			const errorMessage = extractErrorMessage(errorData)
+
+			if (onError) {
+				onError(errorMessage)
+			}
+
+			new NotificationService().show('error', errorMessage)
 		}
 	} catch (errorData) {
 		const errorMessage = extractErrorMessage(errorData)
-
-		if (errorMessage) {
+		if (onError) {
 			onError(errorMessage)
 		}
+		new NotificationService().show('error', errorMessage)
 	} finally {
 		isLoading = false
 	}

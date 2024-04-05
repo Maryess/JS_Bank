@@ -1,2 +1,32 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
 .auth {
+	display: flex;
+	margin-top: $gap * 3;
+	> form {
+		@include dashboard-section;
+		margin: auto;
+		min-width: 464px;
+		width: 40%;
+		display: flex;
+		flex-direction: column;
+
+		> h1 {
+			text-align: center;
+			font-weight: 600;
+			font-size: 2rem;
+			margin-bottom: 1.5rem;
+		}
+		> footer {
+			text-align: right;
+			> button {
+				margin-bottom: 1rem;
+				background-color: transparent;
+				color: rgba(#fff, 70%);
+				font-size: 16px;
+				justify-self: end;
+			}
+		}
+	}
 }

@@ -1,4 +1,4 @@
-import { redQuery } from '@/core/red-query/red-query.lib'
+import { bankQuery } from '@/bank-query/bank-query.lib'
 import { NotificationService } from '@/core/services/notification.service'
 
 export class CardService {
@@ -10,7 +10,7 @@ export class CardService {
 	}
 
 	byUser(onSuccess) {
-		return redQuery({
+		return bankQuery({
 			path: `${this.#BASE_URL}/by-user`,
 			onSuccess
 		})
@@ -25,7 +25,7 @@ export class CardService {
 	 * @returns {Promise} A Promise object that resolves to the response from the API.
 	 */
 	updateBalance(amount, type, onSuccess) {
-		return redQuery({
+		return bankQuery({
 			path: `${this.#BASE_URL}/balance/${type}`,
 			method: 'PATCH',
 			body: { amount: +amount },
@@ -50,7 +50,7 @@ export class CardService {
 	 * @returns {Promise} A promise that resolves with the redQuery response.
 	 */
 	transfer({ amount, toCardNumber }, onSuccess) {
-		return redQuery({
+		return bankQuery({
 			path: `${this.#BASE_URL}/transfer-money`,
 			method: 'PATCH',
 			body: {
