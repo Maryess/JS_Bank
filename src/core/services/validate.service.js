@@ -1,4 +1,4 @@
-import { COLOR } from '@/config/color.config'
+import { COLORS } from '@/config/colors.config'
 import { NotificationService } from './notification.service'
 class ValidateService {
 	constructor() {}
@@ -9,7 +9,7 @@ class ValidateService {
 	 */
 
 	showError(element, message) {
-		const disappear = element.css('border-color', COLOR.error)
+		const disappear = element.css('border-color', COLORS.error)
 
 		setTimeout(() => {
 			disappear.css('border-color', 'transparent')

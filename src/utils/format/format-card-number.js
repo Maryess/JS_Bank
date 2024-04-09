@@ -6,3 +6,8 @@
 export function formatCardNumberWithDashes(cardNumber) {
 	return cardNumber.replace(/(\d{4})(?=\d)/g, '$1-')
 }
+
+export function formatCardNumber(cardNumber) {
+	const formatNumber = cardNumber.replace(/\s/g, '').match(/.{1,4}/g)
+	return formatNumber ? formatNumber.join(' ') : ''
+}

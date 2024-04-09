@@ -38,7 +38,9 @@
 		.item {
 			opacity: 0;
 			transform: translateY(-20px);
-			transition: opacity 0.3s transform 0.3s;
+			transition:
+				opacity 0.3s,
+				transform 0.3s;
 
 			&.visible {
 				opacity: 1;
