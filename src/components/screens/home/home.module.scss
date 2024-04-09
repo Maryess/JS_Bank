@@ -1,3 +1,8 @@
-.home{
-	background-color:pink;
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.home {
+	display: grid;
+	grid-template-columns: 2.2fr 1fr;
+	gap: $gap;
 }

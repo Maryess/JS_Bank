@@ -10,7 +10,7 @@
  */
 
 import { SERVER_URL } from '@/config/url.config'
-import { ACCESS_TOKEN_KEY } from '@/constanst/auth.const'
+import { ACCESS_TOKEN_KEY } from '@/constants/auth.constants'
 import { NotificationService } from '@/core/services/notification.service'
 import { StorageService } from '@/core/services/storage.service'
 import { extractErrorMessage } from './extract-error-message'

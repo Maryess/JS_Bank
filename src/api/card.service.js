@@ -54,9 +54,9 @@ export class CardService {
 			path: `${this.#BASE_URL}/transfer-money`,
 			method: 'PATCH',
 			body: {
-				amount: +amount
-				// fromCardNumber: this.store.user.card.number,
-				// toCardNumber
+				amount: +amount,
+				fromCardNumber: this.store.user.card.number,
+				toCardNumber
 			},
 			onSuccess: () => {
 				this.notificationService.show(

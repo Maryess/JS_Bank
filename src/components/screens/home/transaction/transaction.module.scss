@@ -1,0 +1,10 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.transaction {
+	background-color: $bg-block;
+	padding: 100px 10px;
+	margin-top: 40px;
+	max-width: 1000px;
+	border-radius: $radius;
+}

@@ -39,6 +39,13 @@ class RQuery {
 		}
 	}
 
+	findAll(selector) {
+		const elements = new RQuery(this.element.querySelectorAll(selector))
+		return Array.from(elements).map(element => {
+			new RQuery(element)
+		})
+	}
+
 	/* INSERT */
 
 	/**
@@ -109,6 +116,17 @@ class RQuery {
 	}
 
 	/* EVENTS */
+
+	on(eventType, callback) {
+		if (typeof eventType !== 'string' || typeof callback !== 'function') {
+			throw new Error(
+				'eventType must be string and callback must be a function'
+			)
+		}
+
+		this.element.addEventListener(eventType, callback)
+		return this
+	}
 
 	/**
 	 * Attach a click event listener to the selected element.
