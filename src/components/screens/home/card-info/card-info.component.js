@@ -8,10 +8,11 @@ import { formatToCurrency } from '@/utils/format/format-currency-number'
 
 import { CardService } from '@/api/card.service'
 
+import { BALANCE_UPDATE_EVENT } from '@/constants/event.constants'
 import styles from './card-info.module.scss'
 import template from './card-info.template.html'
 
-const CODE = '*****'
+const CODE = '****'
 
 export class CardInfo extends ChildComponent {
 	constructor() {
@@ -21,6 +22,24 @@ export class CardInfo extends ChildComponent {
 		this.cardService = new CardService()
 
 		this.element = renderService.htmlToElement(template, [], styles)
+
+		this.#addListener()
+	}
+
+	#addListener() {
+		document.addEventListener(BALANCE_UPDATE_EVENT, this.#onBalanceUpdated)
+	}
+
+	#removeListener() {
+		document.removeEventListener(BALANCE_UPDATE_EVENT, this.#onBalanceUpdated)
+	}
+
+	#onBalanceUpdated = () => {
+		this.fetchData()
+	}
+
+	deleted() {
+		this.#removeListener()
 	}
 
 	#copyCardNumber(e) {
@@ -44,11 +63,11 @@ export class CardInfo extends ChildComponent {
 			renderService.htmlToElement(template, [], styles).innerHTML
 		)
 
-		// $R(this.element)
-		// 	.findAll(':scope > div')
-		// 	.forEach(child => {
-		// 		child.addClass('fade-in')
-		// 	})
+		$R(this.element)
+			.findAll(':scope > div')
+			.forEach(child => {
+				child.addClass('fade-in')
+			})
 
 		$R(this.element)
 			.find('#card-number')
