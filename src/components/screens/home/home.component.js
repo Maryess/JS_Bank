@@ -3,20 +3,21 @@ import renderService from '@/core/services/render.service.js'
 import { CardInfo } from './card-info/card-info.component'
 import styles from './home.module.scss'
 import template from './home.template.html'
-import { Transaction } from './transaction/transaction.component'
+import { Replenish } from './replenish/replenish.component'
 
 export class Home extends BaseScreen {
 	constructor() {
 		super({ title: 'Home' })
 	}
+
 	render() {
-		const element = renderService.htmlToElement(
+		this.element = renderService.htmlToElement(
 			template,
-			[new CardInfo(), new Transaction()],
+			[CardInfo, Replenish],
 
 			styles
 		)
 
-		return element
+		return this.element
 	}
 }

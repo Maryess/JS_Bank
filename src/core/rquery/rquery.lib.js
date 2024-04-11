@@ -40,10 +40,8 @@ class RQuery {
 	}
 
 	findAll(selector) {
-		const elements = new RQuery(this.element.querySelectorAll(selector))
-		return Array.from(elements).map(element => {
-			new RQuery(element)
-		})
+		const elements = this.element.querySelectorAll(selector)
+		return Array.from(elements).map(element => new RQuery(element))
 	}
 
 	/* INSERT */
@@ -144,6 +142,14 @@ class RQuery {
 	}
 
 	/* FORM */
+
+	value(valueName) {
+		if (typeof valueName === 'undefined') {
+			return this.element.value
+		} else {
+			return (this.element.value = valueName)
+		}
+	}
 
 	submit(onSubmit) {
 		if (this.element.tagName.toLowerCase() === 'form') {
@@ -291,6 +297,14 @@ class RQuery {
 			this.element.setAttribute(attributeName, value)
 			return this
 		}
+	}
+
+	removeAttr(attributeName) {
+		if (typeof attributeName !== 'string') {
+			throw new Error('Attribute name must be a string')
+		}
+		this.element.removeAttribute(attributeName)
+		return this
 	}
 }
 
