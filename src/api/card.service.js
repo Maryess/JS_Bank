@@ -1,11 +1,12 @@
 import { bankQuery } from '@/bank-query/bank-query.lib'
 import { NotificationService } from '@/core/services/notification.service'
+import { Store } from '@/core/store/store'
 
 export class CardService {
 	#BASE_URL = '/cards'
 
 	constructor() {
-		// store
+		this.store = Store.getInstance().state
 		this.notificationService = new NotificationService()
 	}
 

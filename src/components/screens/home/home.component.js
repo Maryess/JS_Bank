@@ -4,6 +4,7 @@ import { CardInfo } from './card-info/card-info.component'
 import styles from './home.module.scss'
 import template from './home.template.html'
 import { Replenish } from './replenish/replenish.component'
+import { TransferMoney } from './transfer-money/transfer-money.component'
 
 export class Home extends BaseScreen {
 	constructor() {
@@ -13,7 +14,7 @@ export class Home extends BaseScreen {
 	render() {
 		this.element = renderService.htmlToElement(
 			template,
-			[CardInfo, Replenish],
+			[CardInfo, Replenish, TransferMoney],
 
 			styles
 		)
