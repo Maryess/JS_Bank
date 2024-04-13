@@ -1,0 +1,10 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+.transfer-money {
+	@include dashboard-section('small');
+
+	> div:last-child {
+		background-color: $gray;
+		border-radius: $radius;
+	}
+}
