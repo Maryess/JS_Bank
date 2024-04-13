@@ -3,7 +3,8 @@
 .transfer-money {
 	@include dashboard-section('small');
 
-	> .users {
+	> div:last-child {
 		background-color: $gray;
+		border-radius: $radius;
 	}
 }

@@ -10,18 +10,15 @@ import { $R } from '@/core/rquery/rquery.lib'
 import renderService from '@/core/services/render.service.js'
 import { Store } from '@/core/store/store'
 import { formatCardNumberWithDashes } from '@/utils/format/format-card-number'
-import { CardInfo } from '../card-info/card-info.component'
-import { Send, SEND_MONEY } from './send/send.component'
+import { Send, TRANSFER_FIELD_SELECTOR } from './send/send.component'
 import styles from './transfer-money.module.scss'
 import template from './transfer-money.template.html'
 
 export class TransferMoney extends ChildComponent {
 	constructor() {
 		super()
-
 		this.store = Store.getInstance().state
 		this.userService = new UserService()
-		this.cardInfo = new CardInfo()
 	}
 
 	fetchData() {
@@ -35,7 +32,9 @@ export class TransferMoney extends ChildComponent {
 					.find('#contacts')
 					.append(
 						new UserItem(user, true, () => {
-							$R(SEND_MONEY).value(formatCardNumberWithDashes(user.card.number))
+							$R(TRANSFER_FIELD_SELECTOR).value(
+								formatCardNumberWithDashes(user.card.number)
+							)
 						}).render()
 					)
 			}
@@ -52,7 +51,7 @@ export class TransferMoney extends ChildComponent {
 	render() {
 		this.element = renderService.htmlToElement(
 			template,
-			[new Heading('Transfer money'), Send],
+			[Send, new Heading('Transfer money')],
 			styles
 		)
 

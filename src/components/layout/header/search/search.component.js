@@ -1,6 +1,6 @@
 import { UserService } from '@/api/user.service'
 import { CardInfo } from '@/components/screens/home/card-info/card-info.component'
-import { SEND_MONEY } from '@/components/screens/home/transfer-money/send/send.component'
+import { TRANSFER_FIELD_SELECTOR } from '@/components/screens/home/transfer-money/send/send.component'
 import { UserItem } from '@/components/ui/user-item/user-item.component'
 import ChildComponent from '@/core/component/child.component'
 import { $R } from '@/core/rquery/rquery.lib'
@@ -32,7 +32,9 @@ export class Search extends ChildComponent {
 
 			users.forEach((user, index) => {
 				const userItem = new UserItem(user, false, () => {
-					$R(SEND_MONEY).value(formatCardNumberWithDashes(user.card.number))
+					$R(TRANSFER_FIELD_SELECTOR).value(
+						formatCardNumberWithDashes(user.card.number)
+					)
 					searchResultElement.html('')
 					$R().find('#content').append(this.cardInfo.render())
 				}).render()

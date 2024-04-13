@@ -9,38 +9,37 @@ import ChildComponent from '@/core/component/child.component'
 import { $R } from '@/core/rquery/rquery.lib'
 import { NotificationService } from '@/core/services/notification.service'
 import renderService from '@/core/services/render.service.js'
-import validateService from '@/core/services/validate.service'
 import { Store } from '@/core/store/store'
 import styles from './send.module.scss'
 import template from './send.template.html'
-export const SEND_MONEY = '[name="card-number"]'
+export const TRANSFER_FIELD_SELECTOR = '[name="card-number"]'
 export class Send extends ChildComponent {
 	constructor() {
 		super()
 
 		this.store = Store.getInstance().state
 		this.cardService = new CardService()
-		this.notification = new NotificationService()
+		this.notificationService = new NotificationService()
 	}
 
-	handleSend(event) {
+	handleTransfer = event => {
 		event.preventDefault()
 
 		if (!this.store.user) {
-			this.notification.show('error', 'You need authorization')
+			this.notificationService.show('error', 'You need authorization!')
 		}
 
 		$R(event.target).text('Sending...').attr('disabled', true)
 
-		let inputValue = $R(this.element).find('input')
-		const toCardNumber = inputValue.value().replaceAll('-', '')
+		const inputElement = $R(this.element).find('input')
+		const toCardNumber = inputElement.value().replaceAll('-', '')
 
 		const reset = () => {
 			$R(event.target).removeAttr('disabled').text('Send')
 		}
 
 		if (!toCardNumber) {
-			validateService.showError($R(this.element).find('label'))
+			validationService.showError($R(this.element).find('label'))
 			reset()
 			return
 		}
@@ -48,11 +47,11 @@ export class Send extends ChildComponent {
 		let amount = prompt('Transfer amount 👇')
 
 		this.cardService.transfer({ amount, toCardNumber }, () => {
-			inputValue = ''
+			inputElement.value('')
 			amount = ''
 
 			document.dispatchEvent(new Event(TRANSACTION_EVENT))
-			document.dispatchEvent(BALANCE_UPDATE_EVENT)
+			document.dispatchEvent(new Event(BALANCE_UPDATE_EVENT))
 		})
 
 		reset()
@@ -63,18 +62,19 @@ export class Send extends ChildComponent {
 			template,
 			[
 				new Field({
+					name: 'card-number',
 					placeholder: 'xxxx-xxxx-xxxx-xxxx',
-					variant: 'credit-card',
-					name: 'code'
+					variant: 'credit-card'
 				}),
 				new Button({
 					children: 'Send',
 					variant: 'purple',
-					onClick: this.handleSend.bind(this)
+					onClick: this.handleTransfer
 				})
 			],
 			styles
 		)
+
 		return this.element
 	}
 }
